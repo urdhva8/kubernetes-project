@@ -1,4 +1,4 @@
-# 🌍 Wanderlust — Travel Booking Website
+Travel-Destinatoions
 
 A full-featured travel booking web application built with Flask and vanilla HTML/CSS/JS.
 
