@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: "travel-app"
-          image: "794934876309.dkr.ecr.us-west-2.amazonaws.com/tanusha-k8s-project:IMAGE_ID"
+          image: "720459752207.dkr.ecr.eu-north-1.amazonaws.com/k8s-travelling-ecr-repo:IMAGE_ID"
           ports:
             - containerPort: 5000
           resources:
