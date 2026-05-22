@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}About Us — Wanderlust{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=1600&q=85')"></div>
+    <div class="page-hero-content">
+        <span class="section-tag">Our Story</span>
+        <h1>About Wanderlust</h1>
+        <p>Born from a passion for exploration and a commitment to authentic experiences.</p>
+    </div>
+</section>
+
+<section class="about-story">
+    <div class="about-grid">
+        <div class="about-text">
+            <span class="section-tag">Who We Are</span>
+            <h2>More Than a Travel <em>Agency</em></h2>
+            <p>Founded in 2010, Wanderlust began with a simple belief: that travel should transform you. We're not just booking flights and hotels — we're crafting journeys that leave you fundamentally changed.</p>
+            <p>Our team of passionate travel curators has personally explored every destination we offer, ensuring that each itinerary carries the authenticity of lived experience rather than brochure promises.</p>
+            <p>From the backwaters of Kerala to the streets of Paris, from the Himalayas to the Maldives — we bring you the world, one extraordinary journey at a time.</p>
+            <div class="about-stats">
+                <div><strong>15+</strong><span>Years in Business</span></div>
+                <div><strong>50+</strong><span>Destinations</span></div>
+                <div><strong>25K+</strong><span>Travelers Served</span></div>
+            </div>
+        </div>
+        <div class="about-image-collage">
+            <img src="https://images.unsplash.com/photo-1500835556837-99ac94a94552?w=600&q=80" alt="Travel" class="collage-main">
+            <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=300&q=80" alt="Adventure" class="collage-sm1">
+            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=300&q=80" alt="Culture" class="collage-sm2">
+        </div>
+    </div>
+</section>
+
+<section class="values-section">
+    <div class="section-header">
+        <span class="section-tag">Our Values</span>
+        <h2>What Drives <em>Us</em></h2>
+    </div>
+    <div class="values-grid">
+        <div class="value-card">
+            <div class="value-num">01</div>
+            <h3>Authenticity</h3>
+            <p>We curate genuine, immersive experiences that connect you to the true heart of each destination.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-num">02</div>
+            <h3>Sustainability</h3>
+            <p>Every trip is designed with care for local communities and the natural world we're privileged to explore.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-num">03</div>
+            <h3>Excellence</h3>
+            <p>From the first inquiry to the last sunset, we obsess over every detail to deliver perfection.</p>
+        </div>
+        <div class="value-card">
+            <div class="value-num">04</div>
+            <h3>Connection</h3>
+            <p>We believe travel builds bridges between people, cultures, and perspectives that change the world.</p>
+        </div>
+    </div>
+</section>
+
+<section class="team-section" id="team">
+    <div class="section-header">
+        <span class="section-tag">The Humans Behind It All</span>
+        <h2>Meet Our <em>Team</em></h2>
+        <p class="section-sub">Passionate explorers dedicated to making your journey unforgettable.</p>
+    </div>
+    <div class="team-grid">
+        {% for member in team %}
+        <div class="team-card">
+            <div class="team-img-wrap">
+                <img src="{{ member.image }}" alt="{{ member.name }}">
+            </div>
+            <div class="team-info">
+                <h3>{{ member.name }}</h3>
+                <span class="team-role">{{ member.role }}</span>
+                <p>{{ member.bio }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-content">
+        <h2>Ready to Start Your <em>Journey?</em></h2>
+        <p>Let us craft the perfect travel experience just for you.</p>
+        <a href="/booking" class="btn-hero">Book Your Trip</a>
+    </div>
+</section>
+{% endblock %}
