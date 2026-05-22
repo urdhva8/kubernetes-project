@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} — Wanderlust{% endblock %}
+
+{% block content %}
+<section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('{% if "National" in title %}https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1600&q=85{% else %}https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1600&q=85{% endif %}')"></div>
+    <div class="page-hero-content">
+        <span class="section-tag">{% if "National" in title %}🇮🇳 Explore India{% else %}🌍 Go Global{% endif %}</span>
+        <h1>{{ title }}</h1>
+        <p>{% if "National" in title %}Discover the incredible diversity across India's landscapes, cultures, and heritage.{% else %}Venture beyond borders to the world's most extraordinary destinations.{% endif %}</p>
+    </div>
+</section>
+
+<section class="all-places-section">
+    <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">All</button>
+        {% set categories = places | map(attribute='category') | unique | list %}
+        {% for cat in categories %}
+        <button class="filter-btn" data-filter="{{ cat }}">{{ cat }}</button>
+        {% endfor %}
+    </div>
+
+    <div class="places-grid-full" id="placesGrid">
+        {% for place in places %}
+        <div class="place-card" data-category="{{ place.category }}">
+            <div class="card-image">
+                <img src="{{ place.image }}" alt="{{ place.name }}" loading="lazy">
+                <div class="card-badge">{{ place.category }}</div>
+                <div class="card-overlay">
+                    <a href="/booking?id={{ place.id }}" class="card-btn">Book Now</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-rating"><span class="stars">★</span> {{ place.rating }}</div>
+                <h3 class="card-title">{{ place.name }}</h3>
+                <p class="card-location">📍 {{ place.location }}</p>
+                <p class="card-desc">{{ place.description }}</p>
+                <div class="card-footer">
+                    <div class="card-price">
+                        <span class="price-from">From</span>
+                        <span class="price-val">₹{{ "{:,}".format(place.price) }}</span>
+                        <span class="price-dur">/ {{ place.duration }}</span>
+                    </div>
+                    <a href="/booking?id={{ place.id }}" class="btn-card">Book →</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        document.querySelectorAll('.place-card').forEach(card => {
+            card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'block' : 'none';
+        });
+    });
+});
+</script>
+{% endblock %}

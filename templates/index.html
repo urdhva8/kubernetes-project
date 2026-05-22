@@ -1,0 +1,330 @@
+{% extends "base.html" %}
+
+{% block title %}Wanderlust — Discover the World{% endblock %}
+
+{% block content %}
+
+<!-- HERO CAROUSEL -->
+<section class="hero" id="hero">
+    <div class="carousel" id="carousel">
+        <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=85')">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">Featured Destination</span>
+                <h1 class="slide-title">Swiss Alps</h1>
+                <p class="slide-sub">Where mountains kiss the clouds</p>
+                <a href="/booking?id=11" class="btn-hero">Explore Now</a>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=1600&q=85')">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">National Wonder</span>
+                <h1 class="slide-title">Kerala Backwaters</h1>
+                <p class="slide-sub">God's own country awaits</p>
+                <a href="/booking?id=2" class="btn-hero">Explore Now</a>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1600&q=85')">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">Tropical Escape</span>
+                <h1 class="slide-title">Bali, Indonesia</h1>
+                <p class="slide-sub">Island of a thousand temples</p>
+                <a href="/booking?id=8" class="btn-hero">Explore Now</a>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1477587458883-47145ed94245?w=1600&q=85')">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">Desert Adventure</span>
+                <h1 class="slide-title">Rajasthan</h1>
+                <p class="slide-sub">Land of maharajas and golden sands</p>
+                <a href="/booking?id=3" class="btn-hero">Explore Now</a>
+            </div>
+        </div>
+        <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1600&q=85')">
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">City of Light</span>
+                <h1 class="slide-title">Paris, France</h1>
+                <p class="slide-sub">Romance in every cobblestone</p>
+                <a href="/booking?id=9" class="btn-hero">Explore Now</a>
+            </div>
+        </div>
+    </div>
+    <button class="carousel-btn prev" id="prevBtn">&#8592;</button>
+    <button class="carousel-btn next" id="nextBtn">&#8594;</button>
+    <div class="carousel-dots" id="carouselDots"></div>
+</section>
+
+<!-- SEARCH BAR -->
+<section class="search-section">
+    <div class="search-box">
+        <div class="search-field">
+            <label>Destination</label>
+            <input type="text" placeholder="Where do you want to go?" id="searchInput">
+        </div>
+        <div class="search-field">
+            <label>Travel Date</label>
+            <input type="date" id="searchDate">
+        </div>
+        <div class="search-field">
+            <label>Travelers</label>
+            <select id="searchTravelers">
+                <option>1 Person</option>
+                <option>2 People</option>
+                <option>3-5 People</option>
+                <option>6+ People</option>
+            </select>
+        </div>
+        <button class="search-btn" onclick="handleSearch()">Search Trips</button>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-section">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <span class="stat-num" data-target="50">0</span><span class="stat-suffix">+</span>
+            <p>Destinations</p>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num" data-target="25000">0</span><span class="stat-suffix">+</span>
+            <p>Happy Travelers</p>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num" data-target="15">0</span><span class="stat-suffix">+</span>
+            <p>Years Experience</p>
+        </div>
+        <div class="stat-item">
+            <span class="stat-num" data-target="98">0</span><span class="stat-suffix">%</span>
+            <p>Satisfaction Rate</p>
+        </div>
+    </div>
+</section>
+
+<!-- NATIONAL PLACES -->
+<section class="places-section" id="national">
+    <div class="section-header">
+        <span class="section-tag">Explore India</span>
+        <h2 class="section-title">National <em>Destinations</em></h2>
+        <p class="section-sub">Discover the breathtaking diversity of incredible India</p>
+    </div>
+    <div class="places-grid">
+        {% for place in national %}
+        <div class="place-card" data-aos="fade-up">
+            <div class="card-image">
+                <img src="{{ place.image }}" alt="{{ place.name }}" loading="lazy">
+                <div class="card-badge">{{ place.category }}</div>
+                <div class="card-overlay">
+                    <a href="/booking?id={{ place.id }}" class="card-btn">Book Now</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-rating">
+                    <span class="stars">★</span> {{ place.rating }}
+                </div>
+                <h3 class="card-title">{{ place.name }}</h3>
+                <p class="card-location">📍 {{ place.location }}</p>
+                <p class="card-desc">{{ place.description }}</p>
+                <div class="card-footer">
+                    <div class="card-price">
+                        <span class="price-from">From</span>
+                        <span class="price-val">₹{{ "{:,}".format(place.price) }}</span>
+                        <span class="price-dur">/ {{ place.duration }}</span>
+                    </div>
+                    <a href="/booking?id={{ place.id }}" class="btn-card">Book →</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="section-cta">
+        <a href="/national" class="btn-outline">View All National Destinations →</a>
+    </div>
+</section>
+
+<!-- INTERNATIONAL PLACES -->
+<section class="places-section places-dark" id="international">
+    <div class="section-header">
+        <span class="section-tag">Go Global</span>
+        <h2 class="section-title">International <em>Destinations</em></h2>
+        <p class="section-sub">Journey beyond borders to the world's most iconic destinations</p>
+    </div>
+    <div class="places-grid">
+        {% for place in international %}
+        <div class="place-card" data-aos="fade-up">
+            <div class="card-image">
+                <img src="{{ place.image }}" alt="{{ place.name }}" loading="lazy">
+                <div class="card-badge">{{ place.category }}</div>
+                <div class="card-overlay">
+                    <a href="/booking?id={{ place.id }}" class="card-btn">Book Now</a>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-rating">
+                    <span class="stars">★</span> {{ place.rating }}
+                </div>
+                <h3 class="card-title">{{ place.name }}</h3>
+                <p class="card-location">📍 {{ place.location }}</p>
+                <p class="card-desc">{{ place.description }}</p>
+                <div class="card-footer">
+                    <div class="card-price">
+                        <span class="price-from">From</span>
+                        <span class="price-val">₹{{ "{:,}".format(place.price) }}</span>
+                        <span class="price-dur">/ {{ place.duration }}</span>
+                    </div>
+                    <a href="/booking?id={{ place.id }}" class="btn-card">Book →</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="section-cta">
+        <a href="/international" class="btn-outline btn-outline-light">View All International Destinations →</a>
+    </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+    <div class="section-header">
+        <span class="section-tag">Why Choose Us</span>
+        <h2 class="section-title">Travel with <em>Confidence</em></h2>
+    </div>
+    <div class="why-grid">
+        <div class="why-card">
+            <div class="why-icon">🗺️</div>
+            <h3>Curated Itineraries</h3>
+            <p>Every route is meticulously crafted by experts who've walked the path themselves.</p>
+        </div>
+        <div class="why-card">
+            <div class="why-icon">💎</div>
+            <h3>Luxury at Every Price</h3>
+            <p>Premium experiences thoughtfully designed to fit every budget range.</p>
+        </div>
+        <div class="why-card">
+            <div class="why-icon">🛡️</div>
+            <h3>Safe & Insured</h3>
+            <p>Comprehensive travel insurance and 24/7 emergency support on every trip.</p>
+        </div>
+        <div class="why-card">
+            <div class="why-icon">🤝</div>
+            <h3>Local Expertise</h3>
+            <p>On-ground local guides who reveal the soul of every destination.</p>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section">
+    <div class="section-header">
+        <span class="section-tag">Traveler Stories</span>
+        <h2 class="section-title">Voices of Our <em>Wanderers</em></h2>
+    </div>
+    <div class="testimonials-track" id="testimonialsTrack">
+        <div class="testimonial-card">
+            <div class="testi-stars">★★★★★</div>
+            <p>"The Kerala backwaters trip was absolutely magical. Every detail was perfect, from the houseboat to the cuisine. Wanderlust exceeded every expectation!"</p>
+            <div class="testi-author">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80" alt="Kavya">
+                <div>
+                    <strong>Kavya Nair</strong>
+                    <span>Bangalore, India</span>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testi-stars">★★★★★</div>
+            <p>"Our Santorini honeymoon was a dream come true. The team at Wanderlust arranged everything flawlessly. We'll cherish this forever."</p>
+            <div class="testi-author">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80" alt="Rahul">
+                <div>
+                    <strong>Rahul & Preethi</strong>
+                    <span>Mumbai, India</span>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-card">
+            <div class="testi-stars">★★★★★</div>
+            <p>"Rajasthan desert safari was the adventure of a lifetime. Wanderlust's guides were knowledgeable, friendly, and incredibly passionate."</p>
+            <div class="testi-author">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="Amit">
+                <div>
+                    <strong>Amit Singh</strong>
+                    <span>Delhi, India</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-section">
+    <div class="newsletter-content">
+        <h2>Start Your <em>Adventure</em> Today</h2>
+        <p>Subscribe for exclusive deals, destination guides, and travel inspiration.</p>
+        <div class="newsletter-form">
+            <input type="email" placeholder="Enter your email address">
+            <button>Subscribe</button>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Carousel
+const slides = document.querySelectorAll('.carousel-slide');
+const dotsContainer = document.getElementById('carouselDots');
+let current = 0, timer;
+
+slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    dotsContainer.appendChild(dot);
+});
+
+function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsContainer.children[current].classList.remove('active');
+    current = (n + slides.length) % slides.length;
+    slides[current].classList.add('active');
+    dotsContainer.children[current].classList.add('active');
+    resetTimer();
+}
+
+function resetTimer() { clearInterval(timer); timer = setInterval(() => goTo(current + 1), 5000); }
+document.getElementById('prevBtn').onclick = () => goTo(current - 1);
+document.getElementById('nextBtn').onclick = () => goTo(current + 1);
+resetTimer();
+
+// Stats counter
+const counters = document.querySelectorAll('.stat-num');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const target = +e.target.dataset.target;
+            let count = 0;
+            const step = target / 60;
+            const update = () => {
+                count = Math.min(count + step, target);
+                e.target.textContent = Math.floor(count).toLocaleString();
+                if (count < target) requestAnimationFrame(update);
+            };
+            update();
+            observer.unobserve(e.target);
+        }
+    });
+});
+counters.forEach(c => observer.observe(c));
+
+function handleSearch() {
+    const dest = document.getElementById('searchInput').value.toLowerCase();
+    if (dest) window.location.href = dest.includes('international') ? '/international' : '/national';
+    else window.location.href = '/national';
+}
+</script>
+{% endblock %}

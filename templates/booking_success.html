@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Booking Confirmed — Wanderlust{% endblock %}
+
+{% block content %}
+<section class="success-section">
+    <div class="success-card">
+        <div class="success-icon">✈️</div>
+        <h1>Booking Request Received!</h1>
+        <p class="success-name">Thank you, <strong>{{ name }}</strong>! 🎉</p>
+        <p>Your trip to <strong>{{ place }}</strong> has been successfully requested. Our travel expert will reach out to you within <strong>24 hours</strong> to confirm all details and finalize your dream journey.</p>
+        <div class="success-steps">
+            <div class="step active">
+                <span>1</span>
+                <p>Booking Received</p>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <span>2</span>
+                <p>Expert Review</p>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <span>3</span>
+                <p>Confirmation Call</p>
+            </div>
+            <div class="step-line"></div>
+            <div class="step">
+                <span>4</span>
+                <p>Let's Travel!</p>
+            </div>
+        </div>
+        <div class="success-actions">
+            <a href="/" class="btn-hero">Back to Home</a>
+            <a href="/booking" class="btn-outline">Book Another Trip</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
