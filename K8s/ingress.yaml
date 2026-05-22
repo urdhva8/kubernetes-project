@@ -10,11 +10,11 @@ metadata:
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80},{"HTTPS": 443}]'
     alb.ingress.kubernetes.io/ssl-redirect: '443'
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-west-2:794934876309:certificate/641080d5-eabc-4f04-9b98-882355adc2b2
+    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:eu-north-1:720459752207:certificate/3182b3ec-9101-4618-bfae-c2ec885b1d89
 spec:
   ingressClassName: alb
   rules:
-  - host: cars.sivadevops.cloud
+  - host: travel.urdhva.space
     http:
       paths:
       - path: /
