@@ -23,4 +23,4 @@ spec:
           service:
             name: travel-app
             port:
-              number: 5050
+              number: 80
